@@ -1,0 +1,17 @@
+name: Publish on NPM test
+run-name: ${{ github.actor }} is testing out NPM Publish 🚀
+on:
+    push:
+      branches: main
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v3
+          with:
+            node-version: "20"
+        - run: yarn build
+        - uses: JS-DevTools/npm-publish@v3
+          with:
+            token: ${{ secrets.NPM_TOKEN }}
