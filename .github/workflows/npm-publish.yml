@@ -1,5 +1,5 @@
 name: Publish on NPM test
-run-name: ${{ github.actor }} is testing out NPM Publish 🚀
+run-name: ${{ github.actor }} is testing out NPM publish env 🚀
 on:
     push:
       branches: main
@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: "20"
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn
+      - run: yarn 
       - run: yarn build
       - run: npm publish --provenance --access public
         env:
