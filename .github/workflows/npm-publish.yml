@@ -6,12 +6,14 @@ on:
 jobs:
     publish_a:
         runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: packages/package-b
         steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-node@v3
           with:
             node-version: "20"
-        - run: cd packages/package-a
         - run: yarn
         - run: yarn build
         - uses: JS-DevTools/npm-publish@v3
@@ -19,12 +21,14 @@ jobs:
             token: ${{ secrets.NPM_TOKEN }}
     publish_b:
       runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: packages/package-b
       steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - run: cd packages/package-b
       - run: yarn
       - run: yarn build
       - uses: JS-DevTools/npm-publish@v3
