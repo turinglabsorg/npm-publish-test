@@ -16,9 +16,9 @@ jobs:
             node-version: "20"
         - run: yarn
         - run: yarn build
-        - uses: JS-DevTools/npm-publish@v3
-          with:
-            token: ${{ secrets.NPM_TOKEN }}
+        - run: npm publish --provenance --access public
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     publish_b:
       runs-on: ubuntu-latest
       defaults:
@@ -31,6 +31,6 @@ jobs:
           node-version: "20"
       - run: yarn
       - run: yarn build
-      - uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
